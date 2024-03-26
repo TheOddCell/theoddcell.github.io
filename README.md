@@ -1,2 +1,2 @@
 # OddCell.ca
-My website hosted on oddcell.ca
+just a website
