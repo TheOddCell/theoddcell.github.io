@@ -4,3 +4,4 @@ plugins:
 site_favicon: favicon.ico
 github:
   is_project_page: false
+title: Odd Cell
