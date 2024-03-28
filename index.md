@@ -3,8 +3,6 @@ title: Home
 ---
 Hello!
 
-I'm a person who does stuff.
-
 [about me](aboutme)
 
 
