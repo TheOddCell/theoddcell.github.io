@@ -8,3 +8,5 @@ is public and compiled.)
 client code at news.sb3
 
 compiled (turbowarp packager) at index.html
+
+python client at newsapi.oddcell.ca/client.py
