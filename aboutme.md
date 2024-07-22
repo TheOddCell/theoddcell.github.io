@@ -2,7 +2,7 @@
 title: About me
 ---
 
-I am a hobbyist programmer, who likes to make random things just for fun. I mainly use PHP, Python<sup>3</sup>, Bash, and HTML.  My main computer runs Windows 10 22H2.
+I am a hobbyist programmer, who likes to make random things just for fun. I mainly use PHP, Python<sup>3</sup>, Bash, and HTML.  My main computer runs Windows 11 23H2.
 
 Want to talk? 
 
