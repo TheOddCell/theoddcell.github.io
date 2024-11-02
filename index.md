@@ -4,7 +4,8 @@ title: Home
 Hello!
 
 [about me](aboutme)
-New! Prank your friends[if they are an idiot](https://private.oddcell.ca/areuanidiot)
+
+New! Prank your friends [if they are an idiot](https://private.oddcell.ca/areuanidiot)
 
 
 ## Projects:
