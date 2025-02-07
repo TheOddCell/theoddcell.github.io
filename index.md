@@ -15,3 +15,4 @@ New! Prank your friends [if they are an idiot](https://private.oddcell.ca/areuan
 [Odd Type News](https://otn.oddcell.ca/)
 [Universal Install Script](https://install.oddcell.ca/)
 [Bussin Web X - Get Requests](https://pypi.org/project/bussinwebx-get/)
+[MathPal](https://mathpal.xyz)
