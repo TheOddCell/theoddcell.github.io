@@ -1,4 +1,3 @@
-gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys 9B41151A96BBBF97
 ---
 title: Keys
 ---
