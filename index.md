@@ -3,10 +3,9 @@ title: Home
 ---
 Hello!
 
-[about me](aboutme)
+[about me](aboutme) [GPG keys](keys)
 
-New! Prank your friends [if they are an idiot](https://private.oddcell.ca/areuanidiot)
-
+New! Try [ObsidianOS](https://obsidianos.xyz/) today!
 
 ## Projects:
 [run.py](http://runpy.oddcell.ca)
@@ -17,3 +16,4 @@ New! Prank your friends [if they are an idiot](https://private.oddcell.ca/areuan
 [Bussin Web X - Get Requests](https://pypi.org/project/bussinwebx-get/)
 [MathPal](https://mathpal.xyz)
 [dotbeat](https://dotbeat.oddcell.ca/)
+[ObsidianOS](https://obsidianos.xyz/)
