@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TheOddCell(.ca)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&display=swap');
+
+    :root {
+      --bg-color: #0a0f1f;
+      --card-bg: #111b33;
+      --accent: #3a8cff;
+      --text-color: #dce7ff;
+    }
+
+    body {
+      font-family: 'Cascadia Code', monospace;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      font-size: 2.2rem;
+      text-shadow: 0 0 10px rgba(58, 140, 255, 0.5);
+    }
+
+    nav {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #66aaff;
+    }
+
+    nav span.separator {
+      color: var(--text-color);
+      opacity: 0.6;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .project {
+      background-color: var(--card-bg);
+      border-left: 4px solid var(--accent);
+      padding: 1rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(58, 140, 255, 0.4);
+    }
+
+    .project h2 {
+      color: var(--accent);
+      font-size: 1.2rem;
+      margin-top: 0;
+    }
+
+    .project p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .project a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>TheOddCell</h1>
+  <nav>
+    <a href="/about">About Me</a>
+    <span class="separator">|</span>
+    <a href="/keys">GPG Keys</a>
+    <span class="separator">|</span>
+    <a href="https://obsidianos.xyz" target="_blank">ObsidianOS</a>
+  </nav>
+
+  <div class="projects" id="projects"></div>
+
+  <script>
+    const CACHE_KEY = 'github_repos_cache';
+    const CACHE_TIME = 30 * 60 * 1000; // 30 minutes
+    const GITHUB_USER = 'TheOddCell';
+
+    async function fetchRepos() {
+      const cached = localStorage.getItem(CACHE_KEY);
+      const cacheTime = localStorage.getItem(CACHE_KEY + '_time');
+
+      if (cached && cacheTime && Date.now() - cacheTime < CACHE_TIME) {
+        return JSON.parse(cached);
+      }
+
+      const res = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100`);
+      let repos = await res.json();
+
+      // Remove forks
+      repos = repos.filter(repo => !repo.fork);
+
+      // Sort by most recent commit
+      repos.sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
+
+      localStorage.setItem(CACHE_KEY, JSON.stringify(repos));
+      localStorage.setItem(CACHE_KEY + '_time', Date.now());
+      return repos;
+    }
+
+    async function checkSubpageExists(repoName) {
+      try {
+        const res = await fetch(`/${repoName}`);
+        return res.status !== 404;
+      } catch {
+        return false;
+      }
+    }
+
+    async function renderProjects() {
+      const container = document.getElementById('projects');
+      const repos = await fetchRepos();
+
+      for (const repo of repos) {
+        const exists = await checkSubpageExists(repo.name);
+        const card = document.createElement('div');
+        card.className = 'project';
+
+        const title = document.createElement('h2');
+        title.textContent = repo.name;
+
+        const desc = document.createElement('p');
+        desc.textContent = repo.description || 'No description available.';
+
+        if (exists) {
+          const link = document.createElement('a');
+          link.href = `/${repo.name}`;
+          link.appendChild(title);
+          card.appendChild(link);
+        } else {
+          card.appendChild(title);
+        }
+
+        card.appendChild(desc);
+        container.appendChild(card);
+      }
+    }
+
+    renderProjects();
+  </script>
+</body>
+</html>
