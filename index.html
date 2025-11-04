@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TheOddCell(.ca)</title>
+  <title>(the)OddCell.ca</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&display=swap');
 
@@ -102,7 +102,7 @@
     <span class="separator">|</span>
     <a href="/keys">GPG Keys</a>
     <span class="separator">|</span>
-    <a href="https://obsidianos.xyz" target="_blank">ObsidianOS</a>
+    <a href="https://obsidianos.xyz" target="_blank">Obsidianos</a>
   </nav>
 
   <div class="projects" id="projects"></div>
@@ -134,21 +134,11 @@
       return repos;
     }
 
-    async function checkSubpageExists(repoName) {
-      try {
-        const res = await fetch(`/${repoName}`);
-        return res.status !== 404;
-      } catch {
-        return false;
-      }
-    }
-
     async function renderProjects() {
       const container = document.getElementById('projects');
       const repos = await fetchRepos();
 
       for (const repo of repos) {
-        const exists = await checkSubpageExists(repo.name);
         const card = document.createElement('div');
         card.className = 'project';
 
@@ -158,16 +148,13 @@
         const desc = document.createElement('p');
         desc.textContent = repo.description || 'No description available.';
 
-        if (exists) {
-          const link = document.createElement('a');
-          link.href = `/${repo.name}`;
-          link.appendChild(title);
-          card.appendChild(link);
-        } else {
-          card.appendChild(title);
-        }
-
+        const link = document.createElement('a');
+        link.href = repo.html_url;
+        link.target = '_blank';
+        link.appendChild(title);
+        card.appendChild(link);
         card.appendChild(desc);
+
         container.appendChild(card);
       }
     }
