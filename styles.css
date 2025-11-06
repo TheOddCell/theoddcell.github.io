@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&display=swap');
+
+:root {
+  --bg-color: #0a0f1f;
+  --card-bg: #111b33;
+  --accent: #3a8cff;
+  --text-color: #dce7ff;
+}
+
+body {
+  font-family: 'Cascadia Code', monospace;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+h1 {
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  font-size: 2.2rem;
+  text-shadow: 0 0 10px rgba(58, 140, 255, 0.5);
+}
+
+nav {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 2rem;
+  background-color: #111b33; /* from first block */
+  padding: 0.75rem 1.5rem;   /* from first block */
+}
+
+nav a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+nav a:hover {
+  color: #66aaff;
+}
+
+nav span.separator {
+  color: var(--text-color);
+  opacity: 0.6;
+}
+
+.card {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  max-width: 700px;
+  width: 100%;
+  line-height: 1.6;
+}
+
+.card a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.project {
+  background-color: var(--card-bg);
+  border-left: 4px solid var(--accent);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(58, 140, 255, 0.4);
+}
+
+.project h2 {
+  color: var(--accent);
+  font-size: 1.2rem;
+  margin-top: 0;
+}
+
+.project p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.project a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+pre {
+  background-color: #0c152b;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+iframe {
+  flex: 1;
+  width: 100%;
+  border: none;
+}
+
