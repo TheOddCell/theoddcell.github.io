@@ -3,23 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>(the)OddCell.ca</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>oddius odd odd the cell</title>
+  <style>
+body {
+    background-color: #000000;
+    color: #fff;
+}
+a {
+    background-color: #4287f5;
+    color: #000
+}
+h1 {
+    text-align: center;
+}
+/*h2 {
+    text-align: center;
+}*/
+button {
+  background-color: #404070;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+</style>
 </head>
 <body>
-  <a href="/"><h1>TheOddCell</h1></a>
-  <nav>
-    <a href="/aboutme">About Me</a>
-    <span class="separator">|</span>
-    <a href="/keys">GPG Keys</a>
-    <span class="separator">|</span>
-    <a href="/obsidianos">ObsidianOS</a>
-    <span class="separator">|</span>
-    <a href="https://tarxz.zip/">tarxz.zip</a>
-  </nav>
-
-  <div class="projects" id="projects"></div>
-
+  <h1>TheOddCell</h1>
+  <h2>about me</h2>
+    <p>hobbyist programmer</p>
+    <p>my gpg public key is available at <a href="https://keyserver.ubuntu.com/pks/lookup?search=9B41151A96BBBF97&fingerprint=on&op=index" target="_blank">ubuntu's keyserver</a>.</p>
+    <p>you can fetch and use my public key with the following command:</p>
+    <pre>gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys 9B41151A96BBBF97</pre>
+    </p>
+    <p>email me at me@oddcell.ca<br>
+    or odd@obsidianos.xyz<br>
+    or tarxz.zip@tarxz.zip<br>
+    or troll@tarxz.zip<br>
+    or doofus@tarxz.zip<br>
+    or yabdbabddopo@tarxz.zip<br>
+    or thefbicanremovethespace @ tarxz[dot]zip<br>
+    or idontcareiliterallyhaveacatchallonthisdomain@tarxz.zip</p>
+  <h2>links</h2>
+  <div id="links"><a href="https://github.com/theoddcell">github</a> <a href="https://dir.tarxz.zip/">tarxz.zip services</a> <a href="https://tarxz.zip/odd">tarxz.zip git</a> <a href="https://obsidianos.xyz">obsidianos</a></div>
+  
   <script>
     const CACHE_KEY = 'github_repos_cache';
     const CACHE_TIME = 30 * 60 * 1000; // 30 minutes
@@ -48,27 +75,16 @@
     }
 
     async function renderProjects() {
-      const container = document.getElementById('projects');
+      const container = document.getElementById('links');
       const repos = await fetchRepos();
 
       for (const repo of repos) {
-        const card = document.createElement('div');
-        card.className = 'project';
-
-        const title = document.createElement('h2');
-        title.textContent = repo.name;
-
-        const desc = document.createElement('p');
-        desc.textContent = repo.description || 'No description available.';
-
         const link = document.createElement('a');
         link.href = repo.html_url;
-        link.target = '_blank';
-        link.appendChild(title);
-        card.appendChild(link);
-        card.appendChild(desc);
+        link.textContent=repo.name;
 
-        container.appendChild(card);
+        container.appendChild(link);
+        container.innerHTML += " "
       }
     }
 
